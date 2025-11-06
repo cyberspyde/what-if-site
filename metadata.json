@@ -1,0 +1,5 @@
+{
+  "name": "What-If Predictive Activity App",
+  "description": "A landing page for a conceptual mobile app that predicts a user’s next likely activity based on their past behavior using Markov-chain-style state transitions and user feedback to improve predictions.",
+  "requestFramePermissions": []
+}
