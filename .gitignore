@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Mobile app installers (add your own)
+public/*.apk
+public/*.ipa
+!public/what-if-android.apk
+!public/what-if-ios.ipa

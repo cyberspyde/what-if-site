@@ -26,15 +26,15 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative w-full min-h-screen overflow-x-hidden">
       {/* Background Gradient & Shape Elements for Parallax-like effect */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10">
+      <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
         <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] bg-gradient-to-r from-cyan-500/20 to-blue-500/10 rounded-full filter blur-3xl animate-slow-pulse"></div>
         <div className="absolute bottom-[-10%] right-[-20%] w-[50%] h-[50%] bg-gradient-to-l from-teal-400/20 to-green-400/10 rounded-full filter blur-3xl animate-slow-pulse animation-delay-2000"></div>
       </div>
 
       <Header currentPage={page} navigate={setPage} />
-      <main>
+      <main className="relative">
         {renderPage()}
       </main>
       <Footer navigate={setPage} />
