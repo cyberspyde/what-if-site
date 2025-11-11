@@ -2,54 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/final-transparent.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>What-If | Predictive Activity App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'brand-primary': '#00F5D4',
-              'brand-secondary': '#00A896',
-              'brand-background': '#020420',
-              'brand-surface': '#0A0E33',
-              'brand-muted': '#94A3B8',
-            },
-            animation: {
-              'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
-              'fade-in-down': 'fade-in-down 0.8s ease-out forwards',
-              'fade-in': 'fade-in 0.8s ease-out forwards',
-              'slow-pulse': 'slow-pulse 4s infinite ease-in-out',
-              'draw-line': 'draw-line 1s ease-out forwards',
-            },
-            keyframes: {
-              'fade-in-up': {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              'fade-in-down': {
-                '0%': { opacity: '0', transform: 'translateY(-20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-               'fade-in': {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              'slow-pulse': {
-                '0%, 100%': { transform: 'scale(1)', opacity: '1' },
-                '50%': { transform: 'scale(1.05)', opacity: '0.7' },
-              },
-              'draw-line': {
-                'from': { 'stroke-dashoffset': '1000' },
-                'to': { 'stroke-dashoffset': '0' },
-              },
-            },
-          },
-        },
-      };
-    </script>
+    
+    <!-- Primary Meta Tags -->
+    <title>What-If | Know Yourself. Change Your Future.</title>
+    <meta name="title" content="What-If | Know Yourself. Change Your Future." />
+    <meta name="description" content="What-If uses AI to reveal your hidden patterns and gently nudge you toward the life you want—one choice at a time. Download free for Android & iOS." />
+    <meta name="keywords" content="habit tracking, AI predictions, self-awareness, behavior patterns, activity prediction, personal growth, life optimization, habit formation" />
+    <meta name="author" content="What-If Inc." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://what-if.uz/" />
+    <meta property="og:title" content="What-If | Know Yourself. Change Your Future." />
+    <meta property="og:description" content="AI-powered app that reveals your patterns and helps you build better habits. See your next move predicted with 90% accuracy." />
+    <meta property="og:image" content="https://what-if.uz/final-transparent.png" />
+    <meta property="og:site_name" content="What-If" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://what-if.uz/" />
+    <meta property="twitter:title" content="What-If | Know Yourself. Change Your Future." />
+    <meta property="twitter:description" content="AI-powered app that reveals your patterns and helps you build better habits. See your next move predicted with 90% accuracy." />
+    <meta property="twitter:image" content="https://what-if.uz/final-transparent.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://what-if.uz/" />
   <script type="importmap">
 {
   "imports": {
@@ -60,8 +39,8 @@
 }
 </script>
 <link rel="stylesheet" href="/index.css">
-</head>
-  <body class="bg-brand-background text-slate-100 antialiased">
+    </head>
+  <body class="text-brand-dark antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

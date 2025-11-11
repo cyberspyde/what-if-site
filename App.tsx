@@ -1,44 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { HowItWorksPage } from './pages/HowItWorksPage';
 import { FeaturesPage } from './pages/FeaturesPage';
-import { RoadmapPage } from './pages/RoadmapPage';
-
-export type Page = 'home' | 'how' | 'features' | 'roadmap';
+import { WhyWhatIfPage } from './pages/WhyWhatIfPage';
+import { FAQPage } from './pages/FAQPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 const App: React.FC = () => {
-  const [page, setPage] = useState<Page>('home');
-
-  const renderPage = () => {
-    switch (page) {
-      case 'how':
-        return <HowItWorksPage />;
-      case 'features':
-        return <FeaturesPage />;
-      case 'roadmap':
-        return <RoadmapPage />;
-      case 'home':
-      default:
-        return <HomePage />;
-    }
-  };
-
   return (
-    <div className="relative w-full min-h-screen overflow-x-hidden">
-      {/* Background Gradient & Shape Elements for Parallax-like effect */}
-      <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] bg-gradient-to-r from-cyan-500/20 to-blue-500/10 rounded-full filter blur-3xl animate-slow-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[-20%] w-[50%] h-[50%] bg-gradient-to-l from-teal-400/20 to-green-400/10 rounded-full filter blur-3xl animate-slow-pulse animation-delay-2000"></div>
-      </div>
+    <Router>
+            <div className="min-h-screen bg-brand-background text-brand-dark overflow-x-hidden">
+        {/* Fixed background gradients */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-500/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-400/25 rounded-full blur-3xl"></div>
+        </div>
 
-      <Header currentPage={page} navigate={setPage} />
-      <main className="relative">
-        {renderPage()}
-      </main>
-      <Footer navigate={setPage} />
-    </div>
+        <Header />
+        <main className="relative">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/why-what-if" element={<WhyWhatIfPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

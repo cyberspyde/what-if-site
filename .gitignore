@@ -24,7 +24,9 @@ dist-ssr
 *.sw?
 
 # Mobile app installers (add your own)
+# APK files are too large for GitHub (>100MB limit)
+# Host these files on external platforms like Huggingface
 public/*.apk
 public/*.ipa
-!public/what-if-android.apk
-!public/what-if-ios.ipa
+public/what-if-android.apk
+public/what-if-ios.ipa
