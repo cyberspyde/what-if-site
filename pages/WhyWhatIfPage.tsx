@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { SEO } from '../components/SEO';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { SparklesIcon } from '../components/icons/SparklesIcon';
 
 export const WhyWhatIfPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Why What-If? | What-If';
-  }, []);
-
   return (
     <div className="pt-24">
+      <SEO
+        title="Why What-If? | Transform Your Life Through Self-Awareness"
+        description="What-If isn't just another habit tracker. It's a mirror that reveals your true patterns and helps you create lasting change. Discover why self-awareness matters."
+        keywords="why use What-If, self-awareness app, behavior change, habit transformation, personal growth tool, life improvement app"
+        canonicalUrl="https://what-if.uz/why-what-if"
+      />
       {/* Hero Section */}
       <section className="py-20 sm:py-32">
         <div className="container mx-auto px-6">

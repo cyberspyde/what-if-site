@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { SEO } from '../components/SEO';
 import { AnimatedSection } from '../components/AnimatedSection';
 
 export const PrivacyPolicyPage: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Privacy Policy | What-If';
-  }, []);
-
   return (
     <div className="pt-24 pb-20">
+      <SEO
+        title="Privacy Policy | What-If - Your Data Stays Private"
+        description="Read What-If's privacy policy. All your data stays on your device with end-to-end encryption. We don't sell or share your personal information. 100% transparent."
+        keywords="What-If privacy policy, data privacy, on-device storage, encryption, data security, privacy first"
+        canonicalUrl="https://what-if.uz/privacy-policy"
+      />
       <section className="py-12">
         <div className="container mx-auto px-6">
           <AnimatedSection>

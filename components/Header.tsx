@@ -3,15 +3,45 @@ import { Link, useLocation } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const lastScrollY = React.useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+    const controlNavbar = () => {
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Determine if scrolled past threshold
+      if (currentScrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+      
+      // Show header when scrolling up or at the top
+      // Hide header when scrolling down (but not in first 100px)
+      if (currentScrollY < 100) {
+        setIsVisible(true);
+      } else if (currentScrollY < lastScrollY.current) {
+        // Scrolling up
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // Scrolling down
+        setIsVisible(false);
+        setIsMobileMenuOpen(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    window.addEventListener('scroll', controlNavbar);
+    document.addEventListener('scroll', controlNavbar);
+    
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+      document.removeEventListener('scroll', controlNavbar);
+    };
   }, []);
 
   const isActive = (path: string) => {
@@ -26,15 +56,17 @@ export const Header: React.FC = () => {
     }`;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-brand-surface/95 backdrop-blur-lg border-b border-slate-700/50 shadow-lg shadow-purple-500/10' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-3">
-          <img src="/final-transparent.png" alt="What-If Logo" className="w-14 h-14 object-contain" />
-          <span className="text-2xl font-bold text-brand-light tracking-wider">What-If</span>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 bg-transparent ${
+      isVisible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
+      <div className="container mx-auto px-6 py-2 flex justify-between items-center">
+        <Link to="/" className="flex items-center space-x-2">
+          <img src="/final-transparent.png" alt="What-If Logo" className="w-10 h-10 object-contain" />
+          <span className="text-xl font-bold text-brand-light tracking-wider">What-If</span>
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-6">
           <Link to="/why-what-if" className={navLinkClasses('/why-what-if')}>Why What-If?</Link>
           <Link to="/faq" className={navLinkClasses('/faq')}>FAQ</Link>
         </nav>
@@ -42,7 +74,7 @@ export const Header: React.FC = () => {
         {/* Desktop CTA */}
         <a 
           href="/#cta"
-          className="hidden md:inline-block bg-gradient-to-r from-brand-gradient-start to-brand-gradient-end text-white font-bold py-2 px-6 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-all transform hover:scale-105"
+          className="hidden md:inline-block bg-gradient-to-r from-brand-gradient-start to-brand-gradient-end text-white font-bold py-1.5 px-5 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-all transform hover:scale-105"
         >
           Download App
         </a>
@@ -66,7 +98,7 @@ export const Header: React.FC = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-brand-surface/95 backdrop-blur-lg border-t border-slate-700/50">
-          <nav className="container mx-auto px-6 py-4 flex flex-col space-y-4">
+          <nav className="container mx-auto px-6 py-3 flex flex-col space-y-3">
             <Link 
               to="/why-what-if" 
               className={navLinkClasses('/why-what-if')}

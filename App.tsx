@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { Breadcrumb } from './components/Breadcrumb';
+import { StructuredData } from './components/StructuredData';
 import { HomePage } from './pages/HomePage';
 import { HowItWorksPage } from './pages/HowItWorksPage';
 import { FeaturesPage } from './pages/FeaturesPage';
@@ -13,14 +15,20 @@ import { NotFoundPage } from './pages/NotFoundPage';
 const App: React.FC = () => {
   return (
     <Router>
-            <div className="min-h-screen bg-brand-background text-brand-dark overflow-x-hidden">
+      {/* Global Structured Data */}
+      <StructuredData type="organization" />
+      <StructuredData type="website" />
+      <StructuredData type="mobileApp" />
+      
+      <div className="min-h-screen bg-brand-background text-brand-dark">
         {/* Fixed background gradients */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-500/30 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-400/25 rounded-full blur-3xl"></div>
         </div>
 
         <Header />
+        <Breadcrumb />
         <main className="relative">
           <Routes>
             <Route path="/" element={<HomePage />} />
